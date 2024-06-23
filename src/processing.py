@@ -11,11 +11,13 @@ def filter_by_state(records: list, state: str = "EXECUTED") -> list:
     return [record for record in records if state == record.get("state")]
 
 
-def sort_by_date(records: list, sort_by_date: str = "descending") -> list:
+def sort_by_date(records: list, ascending: bool = True) -> list:
     """
-    Принимает на вход список словарей и значение параметра сортировки (опционально) и возвращает отсортированный список
+    Сортирует операции по возрастанию (по умолчанию).
 
-    sort_by_date: принимает значение "descending" или "ascending", по умолчанию "descending"
+    :param records: Список операций.
+    :param ascending: Параметр для сортировки по дате (по умолчанию True - сортировка по возростанию).
+    :return: Отсортированный список операций.
     """
     # sort_key = lambda record: datetime.strptime(record['date'], '%Y-%m-%dT%H:%M:%S.%f')
     # flake8:  src/processing.py:20:5: E731 do not assign a lambda expression, use a def
@@ -27,4 +29,4 @@ def sort_by_date(records: list, sort_by_date: str = "descending") -> list:
         """Используется в качестве ключа сортировки в функции sorted()"""
         return datetime.strptime(record["date"], "%Y-%m-%dT%H:%M:%S.%f")
 
-    return sorted(records, key=sort_key, reverse=sort_by_date == "descending")
+    return sorted(records, key=sort_key, reverse=not ascending)
