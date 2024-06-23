@@ -3,10 +3,11 @@ from datetime import datetime
 
 def filter_by_state(records: list, state: str = "EXECUTED") -> list:
     """
-    Принимает на вход список словарей и значение для ключа "state" (опционально) и возвращает новый список,
-    содержащий только те словари, у которых ключ "state" содержит переданное в функцию значение
+    Фильтрует операции по заданному состоянию.
 
-    state: принимает значение "EXECUTED" или "CANCELED", по умолчанию "EXECUTED"
+    :param records: Список операций.
+    :param state: Состояние для фильтрации (по умолчанию 'EXECUTED').
+    :return: Отфильтрованный список операций.
     """
     return [record for record in records if state == record.get("state")]
 
