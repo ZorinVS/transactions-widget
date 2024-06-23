@@ -27,7 +27,12 @@ def sort_by_date(records: list, ascending: bool = True) -> list:
     # flake8:  src/processing.py:23:120: E501 line too long (142 > 119 characters)
 
     def sort_key(record: dict) -> datetime:
-        """Используется в качестве ключа сортировки в функции sorted()"""
+        """
+        Используется в качестве ключа сортировки в функции sorted(), извлекая дату из записи.
+
+        :param record: Запись, содержащая дату и время в формате ISO 8601.
+        :return: Объект datetime, полученный из строки даты, который используется в качестве ключа сортировки
+        """
         return datetime.strptime(record["date"], "%Y-%m-%dT%H:%M:%S.%f")
 
     return sorted(records, key=sort_key, reverse=not ascending)
