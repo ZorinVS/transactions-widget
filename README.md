@@ -19,7 +19,7 @@ git clone git@github.com:ZorinVS/transactions-widget.git
 ```
 2. Install the dependencies:
 ```bash
-pip install -r requirements.txt
+poetry install
 ```
 
 ## Documentation:
