@@ -33,7 +33,7 @@ The project testing is conducted using the tests package, which includes the fol
 
 ### There are two ways to perform project testing:
 1. Using PyCharm's terminal:
-```bash
+```
 pytest tests
 ```
 2. Using PyCharm's functionality:
