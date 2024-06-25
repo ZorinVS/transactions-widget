@@ -22,6 +22,27 @@ git clone git@github.com:ZorinVS/transactions-widget.git
 poetry install
 ```
 
+## Project Testing
+
+The project testing is conducted using the tests package, which includes the following files:
+- init.py
+- conftest.py
+- test_masks.py
+- test_processing.py
+- test_widget.py
+
+### There are two ways to perform project testing:
+1. Using PyCharm's terminal:
+```bash
+pytest tests
+```
+2. Using PyCharm's functionality:
+- Open the **Edit Configurations** window.
+- Select **pytest**.
+- Specify the directory containing the tests and the project directory.
+- Confirm the changes by clicking **Apply** and **OK**.
+- Run **pytest in tests**
+
 ## Documentation:
 
 For more information please contact...
