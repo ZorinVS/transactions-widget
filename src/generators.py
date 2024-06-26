@@ -30,7 +30,7 @@ def card_number_generator(start: int, end: int) -> Iterator[str]:
     :param end: Конец диапазона генерации (включительно).
     :return: Генератор, который поочередно возвращает номера карт.
     """
-    for num in range(start, end+1):
+    for num in range(start, end + 1):
         # Получение номера карты в виде слитной строки
         formatted_num = f"{num:016d}"
         # Вывод номера карты в формате XXXX XXXX XXXX XXXX
