@@ -98,6 +98,7 @@ poetry install
 The project testing is conducted using the tests package, which includes the following files:
 - init.py
 - conftest.py
+- test_generators.py
 - test_masks.py
 - test_processing.py
 - test_widget.py
