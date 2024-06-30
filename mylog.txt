@@ -1,0 +1,4 @@
+add error: can only concatenate str (not "int") to str. Inputs: ('1',), {'y': 2}
+add ok
+add error: can only concatenate str (not "int") to str. Inputs: ('1',), {'y': 2}
+add ok
