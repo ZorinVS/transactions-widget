@@ -9,9 +9,11 @@ Server-side for the banking operations widget, designed for integration into the
 Banking Operations Widget Backend Server includes the following functional modules:
 
 - decorators.py
+- external_api.py
 - generators.py
 - masks.py
 - processing.py
+- utils.py
 - widget.py
 
 ### Functional Modules Overview:
@@ -28,6 +30,14 @@ Purpose:
   - Accepts an optional filename parameter (default **None**).
     - filename (str): The path to the file where logging will be performed.
   - Returns the wrapped function with logging.
+
+### external_api.py
+
+Purpose:
+
+- get_transaction_amount_in_rub(transaction)
+  - Accepts transaction.
+  - Returns the transaction amount in rubles.
 
 #### generators.py
 
@@ -68,6 +78,19 @@ Purpose:
 - sort_by_date(records, ascending=True)
   - Accepts a list of records and an optional ascending parameter for sorting (default: True - ascending order).
   - Sorts operations by date (ascending by default).
+
+### utils.py
+
+Purpose:
+
+- read_transactions_json(file_path)
+  - This function reads a JSON file containing financial transaction data and returns a list of dictionaries representing the transactions.
+  - Behavior:
+    - If the file does not exist, the function returns an empty list.
+    - If the file is not a valid JSON file, the function returns an empty list.
+    - If the file contains a list of dictionaries, the function returns the list.
+  - Accepts file_path.
+  - Returns a list of transactions.
 
 #### widget.py
 
@@ -113,9 +136,11 @@ The project testing is conducted using the tests package, which includes the fol
 - init.py
 - conftest.py
 - test_decorators.py
+- test_external_api.py
 - test_generators.py
 - test_masks.py
 - test_processing.py
+- test_utils.py
 - test_widget.py
 
 ### There are two ways to perform project testing:
