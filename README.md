@@ -11,6 +11,7 @@ Banking Operations Widget Backend Server includes the following functional modul
 - decorators.py
 - external_api.py
 - generators.py
+- logger_config.py
 - masks.py
 - processing.py
 - utils.py
@@ -54,6 +55,21 @@ Purpose:
 - card_number_generator(start, end)
   - Accepts the start and end of the range for card number generation.
   - Returns card numbers in the format XXXX XXXX XXXX XXXX, where X is a digit.
+
+### logger_config.py
+
+Purpose:
+
+- setup_logger(name)
+  - Configures a logger with the specified name.
+  - Behavior:
+    - Creates a logs directory in the project root if it does not exist.
+    - Creates a log file with the extension .log in the logs directory.
+    - Sets the logging level to DEBUG.
+    - Formats log messages to include the date Time, logger name, logging level, and message.
+    - Ensures logs are overwritten on each application run.
+  - Accepts a single parameter: name (str): The name of the logger.
+  - Returns the configured logger.
 
 #### masks.py
 
@@ -112,12 +128,14 @@ Purpose:
 
 - Python 3.12
 - requests 2.32.3
+- types-requests 2.32.0.20249712
 - flake8 7.0.0
 - black 24.4.2
 - isort 5.13.2
 - mypy 1.10.0
 - pytest 8.2.2
 - pytest-cov 5.0.0
+- python-dotenv 1.0.1
 
 ## Installation
 
