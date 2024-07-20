@@ -16,7 +16,7 @@ def mask_account_card(card_or_account_inform: str) -> str:
         return f"{card_or_account_type} {get_mask_card_number(card_or_account_num)}"
 
 
-def get_data(date_of_transaction: str) -> str:
+def get_date(date_of_transaction: str) -> str:
     """
     - Принимает на вход строку вида  2018-07-11T02:26:18.671407
     - Возвращает строку с датой в виде  11.07.2018

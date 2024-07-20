@@ -104,7 +104,7 @@ Purpose:
   - Accepts a string containing information about the card/account type and number.
   - Returns the original string with the masked card/account number.
   
-- get_data(date_of_transaction) -> str:
+- get_date(date_of_transaction) -> str:
   - Accepts a string in the format 2018-07-11T02:26:18.671407.
   - Returns a string with the date in the format 11.07.2018.
 
