@@ -99,13 +99,38 @@ Purpose:
 
 Purpose:
 
-- read_transactions_json(file_path)
+- read_transactions_json(file_path: str) -> List[Dict[str, Any]]
   - This function reads a JSON file containing financial transaction data and returns a list of dictionaries representing the transactions.
   - Behavior:
-    - If the file does not exist, the function returns an empty list.
-    - If the file is not a valid JSON file, the function returns an empty list.
-    - If the file contains a list of dictionaries, the function returns the list.
+    - If the file does not exist, logs a warning and returns an empty list.
+    - If the file is not a valid JSON file, logs a warning and returns an empty list.
+    - If the file contains valid transaction data, logs an info message and returns the data as a list of dictionaries.
+    - If an error occurs during file reading, logs the error and returns an empty list.
   - Accepts file_path.
+  - Returns a list of transactions.
+
+- read_transactions_csv(file_path: str)  -> List[Dict[Hashable, Any]]
+  - This function reads a CSV file containing financial transaction data and returns a list of dictionaries representing the transactions.
+  - Behavior:
+    - If the file does not exist, logs a warning and returns an empty list.
+    - If the file is empty or not a valid DataFrame, logs a warning and returns an empty list.
+    - If the file contains valid transaction data, logs an info message and returns the data as a list of dictionaries.
+    - If a pd.errors.EmptyDataError occurs, logs an error and returns an empty list.
+    - If a ValueError occurs, logs an error and returns an empty list.
+    - If an unexpected error occurs, logs the error and returns an empty list.
+  - Accepts file_path (str): Path to the CSV file.
+  - Returns a list of transactions.
+
+- read_transactions_excel(file_path: str) -> List[Dict[Hashable, Any]]
+  - This function reads an Excel file containing financial transaction data and returns a list of dictionaries representing the transactions.
+  - Behavior:
+    - If the file does not exist, logs a warning and returns an empty list.
+    - If the file is empty or not a valid DataFrame, logs a warning and returns an empty list.
+    - If the file contains valid transaction data, logs an info message and returns the data as a list of dictionaries.
+    - If a pd.errors.EmptyDataError occurs, logs an error and returns an empty list.
+    - If a ValueError occurs, logs an error and returns an empty list.
+    - If an unexpected error occurs, logs the error and returns an empty list.
+  - Accepts file_path (str): Path to the Excel file.
   - Returns a list of transactions.
 
 #### widget.py
@@ -136,6 +161,8 @@ Purpose:
 - pytest 8.2.2
 - pytest-cov 5.0.0
 - python-dotenv 1.0.1
+- openpyxl 3.1.5"
+- pandas-stubs 2.2.2.240603
 
 ## Installation
 
