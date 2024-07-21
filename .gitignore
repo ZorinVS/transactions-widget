@@ -162,3 +162,5 @@ cython_debug/
 .idea/
 .DS_Store
 *.pyc
+/dummy_empty.xlsx
+/dummy.xlsx
