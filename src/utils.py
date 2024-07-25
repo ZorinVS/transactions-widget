@@ -48,7 +48,7 @@ def read_transactions_csv(file_path: str) -> List[Dict[Hashable, Any]]:
         return []
 
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, delimiter=";")
         if df.empty or not isinstance(df, pd.DataFrame):
             utils_logger.warning(f"File is empty or not a DataFrame: {file_path}")
             return []
@@ -84,6 +84,8 @@ def read_transactions_excel(file_path: str) -> List[Dict[Hashable, Any]]:
         if df.empty or not isinstance(df, pd.DataFrame):
             utils_logger.warning(f"File is empty or not a DataFrame: {file_path}")
             return []
+        # Преобразование всех нестандартных nan объектов в стандартные Python-объекты
+        df = df.applymap(lambda x: None if pd.isna(x) else x)
         utils_logger.info(f"Successfully read Excel file: {file_path}")
         return df.to_dict(orient="records")
 
