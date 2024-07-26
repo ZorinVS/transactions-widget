@@ -10,7 +10,7 @@ from src.logger_config import setup_logger
 utils_logger = setup_logger(__name__)
 
 
-def read_transactions_json(file_path: str) -> List[Dict[str, Any]]:
+def read_transactions_json(file_path: str) -> List[Dict[Hashable, Any]]:
     """
     Читает JSON-файл и возвращает список словарей с данными о финансовых транзакциях.
 
@@ -52,6 +52,10 @@ def read_transactions_csv(file_path: str) -> List[Dict[Hashable, Any]]:
         if df.empty or not isinstance(df, pd.DataFrame):
             utils_logger.warning(f"File is empty or not a DataFrame: {file_path}")
             return []
+
+        # Заполняем NaN пустыми строками
+        df = df.fillna("")
+
         utils_logger.info(f"Successfully read CSV file: {file_path}")
         return df.to_dict(orient="records")
 
@@ -84,8 +88,8 @@ def read_transactions_excel(file_path: str) -> List[Dict[Hashable, Any]]:
         if df.empty or not isinstance(df, pd.DataFrame):
             utils_logger.warning(f"File is empty or not a DataFrame: {file_path}")
             return []
-        # Преобразование всех нестандартных nan объектов в стандартные Python-объекты
-        df = df.applymap(lambda x: None if pd.isna(x) else x)
+        # Преобразование всех нестандартных nan объектов в пустые строки
+        df = df.fillna("")
         utils_logger.info(f"Successfully read Excel file: {file_path}")
         return df.to_dict(orient="records")
 
