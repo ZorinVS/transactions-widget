@@ -1,4 +1,4 @@
-from typing import Iterator
+from typing import Any, Dict, Iterator
 
 
 def filter_by_currency(transactions: list[dict], code: str) -> Iterator[dict]:
@@ -9,7 +9,25 @@ def filter_by_currency(transactions: list[dict], code: str) -> Iterator[dict]:
     :param code: Код валюты.
     :return: Итератор, выдающий по очереди операции, в которых указана заданная валюта.
     """
-    return (transaction for transaction in transactions if transaction["operationAmount"]["currency"]["code"] == code)
+
+    def has_currency_code(transaction: Dict[str, Any], code: str) -> bool:
+        """
+        Проверяет, есть ли в транзакции заданный код валюты.
+
+        :param transaction: Словарь с данными о транзакции.
+        :param code: Код валюты.
+        :return: True, если код валюты найден, иначе False.
+        """
+        operation_amount = transaction.get("operationAmount")
+        if operation_amount:
+            currency = operation_amount.get("currency")
+            if currency and currency.get("code") == code:
+                return True
+        if transaction.get("currency_code") == code:
+            return True
+        return False
+
+    return (transaction for transaction in transactions if has_currency_code(transaction, code))
 
 
 def transaction_descriptions(transactions: list[dict]) -> Iterator[str]:
