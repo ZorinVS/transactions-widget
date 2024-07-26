@@ -1,7 +1,8 @@
 from functools import wraps
+from typing import Any, Callable, Optional
 
 
-def log(filename=None):
+def log(filename: Optional[str] = None) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
     """
     Декоратор для логирования результатов выполнения функции.
 
@@ -13,9 +14,9 @@ def log(filename=None):
     :return: Возвращает обернутую функцию с логированием.
     """
 
-    def decorator(func):
+    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             try:
                 result = func(*args, **kwargs)
                 if filename:
