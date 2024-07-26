@@ -7,8 +7,11 @@ def mask_account_card(card_or_account_inform: str) -> str:
     - Возвращает исходную строку с замаскированным номером карты/счета
     """
 
-    # Получение типа и номера карты/счета
-    card_or_account_type, card_or_account_num = card_or_account_inform.rsplit(" ", 1)
+    try:
+        # Получение типа и номера карты/счета
+        card_or_account_type, card_or_account_num = card_or_account_inform.rsplit(" ", 1)
+    except ValueError:
+        return ""
 
     if card_or_account_type.lower() in ("счет", "счёт"):
         return f"{card_or_account_type} {get_mask_account(card_or_account_num)}"
