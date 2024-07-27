@@ -16,6 +16,7 @@ Banking Operations Widget Backend Server includes the following functional modul
 - processing.py
 - utils.py
 - widget.py
+- main.py
 
 ### Functional Modules Overview:
 
@@ -95,6 +96,19 @@ Purpose:
   - Accepts a list of records and an optional ascending parameter for sorting (default: True - ascending order).
   - Sorts operations by date (ascending by default).
 
+- search_transactions(: List[Dict[str, Any]], search_string: str) -> List[Dict[str, Any]]
+  - Uses a case-insensitive search to match the search string within the transaction descriptions.
+  - Accepts a list of transactions and a search string.
+  - Returns a list of transactions whose descriptions contain the search string.
+
+- count_transactions_by_category(transactions: List[Dict[str, Any]], categories: List[str]) -> Dict[str, int]
+  - Behavior:
+    - Converts category names to lowercase for comparison.
+    - Counts transactions whose descriptions match any of the specified categories.
+    - Maintains the original case of the category names in the result.
+  - Accepts a list of transactions and a list of categories.
+  - Returns a dictionary where keys are category names and values are the count of transactions in each category.
+
 ### utils.py
 
 Purpose:
@@ -148,6 +162,36 @@ Purpose:
 - get_date(date_of_transaction) -> str:
   - Accepts a string in the format 2018-07-11T02:26:18.671407.
   - Returns a string with the date in the format 11.07.2018.
+
+### main.py
+
+ 
+
+Functionality:
+
+- The main.py module provides an interactive console interface for processing banking transactions.
+- It allows users to choose the source of transaction data (JSON, CSV, or Excel) and apply various filters and operations on the transactions.
+
+Purpose:
+
+- main()
+  - Provides an interactive console interface for the user.
+  - Behavior:
+    - Prompts the user to select the format of the transaction data file (JSON, CSV, or Excel). 
+    - Reads the selected transaction data file. 
+    - Prompts the user to filter transactions by status (EXECUTED, CANCELED, PENDING). 
+    - Optionally sorts transactions by date (ascending or descending). 
+    - Optionally filters transactions to include only those in RUB currency. 
+    - Optionally filters transactions based on a search string in their descriptions.
+    - Prints the filtered and processed list of transactions, including masked card/account numbers and formatted dates.
+  - Usage:
+    - Run the script to start the interactive console application. 
+    - Imports functions from other modules:
+      - filter_by_currency from generators.py
+      - filter_by_state, search_transactions, sort_by_date from processing.py
+      - read_transactions_csv, read_transactions_excel, read_transactions_json from utils.py 
+      - get_date, mask_account_card from widget.py
+    - The main.py module integrates various functionalities provided by other modules and offers a comprehensive way to interact with and process banking transactions through a command-line interface.
 
 ## Dependencies
 
