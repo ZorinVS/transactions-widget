@@ -70,12 +70,12 @@ def count_transactions_by_category(transactions: List[Dict[str, Any]], categorie
     :param categories: Список категорий для классификации транзакций.
     :return: Словарь, где ключи — названия категорий, а значения — это количество операций в каждой категории.
     """
-    categories = [category.lower() for category in categories]
+    categories_lower = [category.lower() for category in categories]
     categories_used = []
     for transaction in transactions:
         description = transaction.get("description", "").lower()
-        for category in categories:
+        for category in categories_lower:
             if category in description:
                 categories_used.append(category)
-                break
-    return Counter(categories_used)
+    # Преобразование категорий обратно в исходный регистр и возвращение результата
+    return Counter([categories[categories_lower.index(category)] for category in categories_used])
