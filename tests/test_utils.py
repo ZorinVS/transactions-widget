@@ -230,7 +230,7 @@ def test_read_transactions_csv_valid_file(mock_logger: Mock) -> None:
             result = read_transactions_csv("dummy_path.csv")
             expected_result = data.to_dict(orient="records")
             assert result == expected_result
-            mock_read_csv.assert_called_once_with("dummy_path.csv")
+            mock_read_csv.assert_called_once_with("dummy_path.csv", delimiter=";")
             mock_logger.info.assert_called_once_with("Successfully read CSV file: dummy_path.csv")
 
 
